@@ -1,0 +1,33 @@
+# Universal Web Scraper API Walkthrough
+
+The Universal Web Scraper API has been successfully built. It is a full-stack Next.js application (App Router) integrating tRPC, TypeScript, TailwindCSS, and AI scraping using Gemini. 
+
+## Features Implemented
+
+1. **API Endpoint ([scrapeUrl](file:///home/dakshs/Desktop/scrap/src/server/services/scraper.service.ts#42-72))**: 100% complete using tRPC.
+2. **Scraping Strategy (Tiered Layering)**:
+   - Layer 1 & 2: Ultra-fast fetch using `axios` combined with `cheerio` HTML parsing.
+   - Layer 3: Stealth rendering using `puppeteer-extra` when simple fetch returns insufficient HTML (JS-heavy SPA fallback).
+3. **AI Structuring Layer**: Integrated Google's `gemini-1.5-flash` model via `@google/generative-ai` to rigorously structure output into pre-defined JSON schemas based on the detected type.
+4. **Page Type Detection**: Heuristics are utilized to determine if a scanned site is a `product`, `blog`, or `generic` webpage. 
+5. **Caching & Rate Limiting**: In-memory maps were constructed inside the [trpc.ts](file:///home/dakshs/Desktop/scrap/src/server/api/trpc.ts) context and router configurations to limit abuse and cache expensive Gemini/Puppeteer requests.
+6. **Error Handling**: Graceful validations enforced using Zod, handling invalid URLs, failed scraping attempts, and rate limiting properly.
+7. **Premium UI**: Refined dashboard styled with Tailwind CSS displaying a glassmorphic layout, loaders, colored JSON outputs, and an instant JSON Download mechanism.
+
+## Running the Application
+
+1. Make sure your `.env` or `.env.local` file at `Desktop/scrap/.env.local` includes your Gemini API Key:
+   ```env
+   GEMINI_API_KEY=your_key_here
+   ```
+2. Run the development server in the `Desktop/scrap` repository:
+   ```bash
+   pnpm dev
+   ```
+3. Open `http://localhost:3000` to interact with the API via the dynamic UI dashboard. 
+
+## Code Structure Snapshot
+
+- [scraper.service.ts](file:///home/dakshs/Desktop/scrap/src/server/services/scraper.service.ts) - Core tiered architecture mapping out Layer 1 -> Layer 3. 
+- [ai.service.ts](file:///home/dakshs/Desktop/scrap/src/server/services/ai.service.ts) - The prompt engineering mechanisms orchestrating the Gemini formatting boundaries.
+- [page.tsx](file:///home/dakshs/Desktop/scrap/src/app/page.tsx) - Client Visualization layer.

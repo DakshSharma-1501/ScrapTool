@@ -1,8 +1,8 @@
 import { createTRPCRouter } from "./trpc";
-import { scraperRouter } from "./routers/scraper";
+import { astrologyRouter } from "./routers/astrology";
 
 export const appRouter = createTRPCRouter({
-  scraper: scraperRouter,
+  astrology: astrologyRouter,
 });
 
 export type AppRouter = typeof appRouter;

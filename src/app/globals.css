@@ -6,9 +6,21 @@
   --background: #fafafa;
   --foreground: #0a0a0a;
 }
+
 .dark {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #0b071a; /* Mystical deep purple space */
+  --foreground: #f8fafc;
+}
+
+@theme {
+  --color-mystic-50: #f5f3ff;
+  --color-mystic-100: #ede9fe;
+  --color-mystic-500: #8b5cf6;
+  --color-mystic-800: #5b21b6;
+  --color-mystic-900: #4c1d95;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-space: #0b071a;
 }
 
 body {
